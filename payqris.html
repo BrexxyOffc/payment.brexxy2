@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pembayaran via QRIS</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #2D2DFF, #00C2FF);
+      color: white;
+      overflow-x: hidden;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(-30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      animation: fadeInText 1s ease-out 0.5s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInText {
+      to { opacity: 1; }
+    }
+
+    .desc {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+      animation: fadeInText 1s ease-out 0.7s forwards;
+      opacity: 0;
+    }
+
+    .qris-img {
+      width: 100%;
+      max-width: 300px;
+      border: 6px solid white;
+      border-radius: 12px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
+      70% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #cccccc;
+      animation: fadeInText 1s ease-out 1s forwards;
+      opacity: 0;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #2d2dff, #00c2ff);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00c2ff; /* Mengubah warna tautan menjadi biru */
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer .social-icons {
+      margin-top: 10px;
+    }
+
+    footer .social-icons a {
+      font-size: 18px;
+      margin: 0 10px;
+      color: #333333;
+    }
+
+    footer .social-icons a:hover {
+      color: #00c2ff;
+    }
+
+
+    @keyframes fadeInFooter {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+    
+  <div class="container">
+    <img src="https://files.catbox.moe/3is3vh.jpg" alt="Logo QRIS" class="logo"/>
+    <div class="title">Transfer ke QRIS</div>
+    <div class="desc">Silakan scan kode QRIS di bawah ini untuk melakukan pembayaran.</div>
+    <img src="https://files.catbox.moe/furb7e.jpg" alt="QRIS Image" class="qris-img" />
+    <div class="note">Pastikan nominal sudah sesuai sebelum melakukan pembayaran.</div>
+<!-- Tambahkan di <head> HTML kamu -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Tombol Unduh Modern + Lucide Icon -->
+<div style="text-align: center; margin-top: 20px;">
+  <button id="downloadBtn" onclick="downloadQR()" style="
+    background: linear-gradient(135deg, #007BFF, #6f42c1);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  "
+    onmouseover="this.style.filter='brightness(1.1)'"
+    onmouseout="this.style.filter='brightness(1)'"
+    onmousedown="this.style.transform='scale(0.97)'"
+    onmouseup="this.style.transform='scale(1)'"
+  >
+    <i data-lucide="download" style="width: 20px; height: 20px;"></i>
+    Unduh Gambar QR
+  </button>
+</div>
+
+<!-- Script Download -->
+<script>
+  // Render ikon Lucide
+  lucide.createIcons();
+
+  // Fungsi unduh gambar
+  function downloadQR() {
+    const imageUrl = 'https://files.catbox.moe/furb7e.jpg';
+    const fileName = 'qris-brexxy.jpg';
+
+    fetch(imageUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(() => alert('Gagal mengunduh gambar.'));
+  }
+</script>
+  </div>
+  <footer>&copy; 2025 DANA Payment Gateway - Brexxy Official Store</footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pembayaran via GOPAY</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #2D2DFF, #00C2FF);
+      color: white;
+      overflow-x: hidden;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(-30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      animation: fadeInText 1s ease-out 0.5s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInText {
+      to { opacity: 1; }
+    }
+
+    .desc {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+      animation: fadeInText 1s ease-out 0.7s forwards;
+      opacity: 0;
+    }
+
+    .gopay-number {
+      font-size: 20px;
+      font-weight: bold;
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 15px;
+      user-select: all;
+    }
+
+    .copy-btn {
+      background-color: #ffffff;
+      color: #2D2DFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #d1d1ff;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #cccccc;
+      animation: fadeInText 1s ease-out 1s forwards;
+      opacity: 0;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #2d2dff, #00c2ff);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #00c2ff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://files.catbox.moe/7nz86g.jpg" alt="Logo GOPAY" class="logo"/>
+    <div class="title">Transfer ke Nomor GOPAY</div>
+    <div class="desc">Silakan salin nomor GOPAY di bawah ini dan lakukan pembayaran manual.</div>
+    <div class="gopay-number" id="gopayNumber">(085123652653)</div>
+    <br>
+    <button class="copy-btn" onclick="copyGOPAY()">Salin Nomor</button>
+    <div class="note">Pastikan nominal sudah sesuai sebelum melakukan pembayaran.</div>
+  </div>
+
+  <footer>&copy; 2025 GOPAY Payment Gateway - Brexxy Official Store</footer>
+
+  <script>
+    function copyGOPAY() {
+      const number = document.getElementById("gopayNumber").textContent;
+      navigator.clipboard.writeText(number).then(() => {
+        alert("Nomor GOPAY disalin!");
+      });
+    }
+  </script>
+</body>
+</html>

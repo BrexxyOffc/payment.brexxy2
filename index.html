@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brexxy Payment</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Navigasi Tombol Atas -->
+<div style="
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #0066ff, #6600cc);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+">
+  <button onclick="location.href='produk.html'" class="nav-btn">Produk</button>
+  <button onclick="location.href='index.html'" class="nav-btn">Pembayaran</button>
+<button onclick="location.href='testimoni.html'" class="nav-btn">Testimoni</button>
+</div>
+
+<!-- Tambahkan di dalam <style> atau <head> -->
+<style>
+  .nav-btn {
+    background-color: white;
+    color: #330099;
+    border: none;
+    padding: 12px 26px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .nav-btn:hover {
+    background-color: #f0f0ff;
+    color: #220066;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+</style>
+</div>
+<h2 id="produk"></h2>
+<h2 id="pembayaran"></h2>
+<h2 id="testimoni"></h2>
+
+  <div class="container">
+    <div class="payment-card">
+      <h2>Halaman Pembayaran</h2>
+      <div class="payment-options">
+        <div class="payment-option" id="qris-payment">
+          <img
+            src="https://files.catbox.moe/3is3vh.jpg"
+            alt="QRIS Logo"
+          />
+          <button onclick="startQRISPayment()">Bayar dengan QRIS</button>
+        </div>
+        <div class="payment-option" id="dana-payment">
+          <img
+            src="https://files.catbox.moe/6jtvll.png"
+            alt="DANA Logo"
+          />
+          <button onclick="startDanaPayment()">Bayar dengan DANA</button>
+        </div>
+        <div class="payment-option" id="gopay-payment">
+          <img
+            src="https://files.catbox.moe/7nz86g.jpg"
+            alt="GOPAY Logo"
+          />
+          <button onclick="startGopayPayment()">Bayar dengan GOPAY</button>
+        </div>
+        <div class="payment-option" id="ovo-payment">
+          <img
+            src="https://files.catbox.moe/9ts849.jpg"
+            alt="OVO Logo"
+          />
+          <button onclick="startOvoPayment()">Bayar dengan OVO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>&copy; 2025 Brexxy Payment Gateway</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
